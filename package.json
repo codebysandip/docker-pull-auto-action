@@ -1,0 +1,21 @@
+{
+  "name": "docker-pull-auto",
+  "version": "1.0.0",
+  "description": "docker pull auto sends request to docker-pull-auto repo implementation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js dockerImage=sandipj/react-ssr-doc dockerTag=prod-890b6de9-1688377032 domain=localhost overHttp port=7002 hookSecret=",
+    "build": "ncc build index.js --license licenses.txt"
+  },
+  "keywords": [
+    "docker pull auto",
+    "docker pull automatically"
+  ],
+  "author": "Sandip Jaiswal",
+  "license": "ISC",
+  "dependencies": {
+    "@actions/core": "^1.10.0",
+    "@actions/github": "^5.1.1"
+  }
+}

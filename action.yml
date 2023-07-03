@@ -1,0 +1,24 @@
+name: 'Hello World'
+description: 'Greet someone and record the time'
+inputs:
+  docker-image:
+    description: 'docker image. Example sandipj/react-ssr-doc'
+    required: true
+  docker-tag:
+    description: 'docker tag which you just generated. Example latest'
+    required: true
+  domain:
+    description: 'domain on which request will send'
+    required: true
+  hook-secret:
+    description: 'hook secret used to verify request coming from docker pull auto action'
+    required: true
+  over-http:
+    description: 'request will send over http if true'
+    default: false
+  port:
+    description: 'port on which request will send. Default 443'
+    default: 443
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
