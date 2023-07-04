@@ -1,20 +1,20 @@
-const core = require('@actions/core');
+// const core = require('@actions/core');
 
-const obj = {
-    dockerImage: core.getInput("docker-image"),
-    dockerTag: core.getInput("docker-tag"),
-    domain: core.getInput("domain"),
-    hookSecret: core.getInput("hook-secret"),
-    overHttp: core.getInput("over-http"),
-    port: core.getInput("port")
-};
+// const obj = {
+//     dockerImage: core.getInput("docker-image"),
+//     dockerTag: core.getInput("docker-tag"),
+//     domain: core.getInput("domain"),
+//     hookSecret: core.getInput("hook-secret"),
+//     overHttp: core.getInput("over-http"),
+//     port: core.getInput("port")
+// };
 // for local testing
-// const obj = {};
-// const args = process.argv.slice(2);
-// args.forEach((arg) => {
-//     const splittedVal = arg.split("=");
-//     obj[splittedVal[0]] = splittedVal[1] || true;
-// });
+const obj = {};
+const args = process.argv.slice(2);
+args.forEach((arg) => {
+    const splittedVal = arg.split("=");
+    obj[splittedVal[0]] = splittedVal[1] || true;
+});
 
 if (!obj.dockerImage) {
     console.error("docker image not passed as parameter. Example dockerImage=sandipj/react-ssr-doc");
@@ -67,8 +67,6 @@ const options = {
         "x-hub-signature-256": header,
     },
 };
-
-console.log("request options!!", options);
 
 const req = adapter.request(options, function (res) {
     console.log("STATUS: " + res.statusCode);

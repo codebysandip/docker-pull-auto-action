@@ -1,5 +1,5 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Docker Pull Auto Action'
+description: 'Docker Pull Auto action works with https://github.com/codebysandip/docker-pull-auto'
 inputs:
   docker-image:
     description: 'docker image. Example sandipj/react-ssr-doc'
