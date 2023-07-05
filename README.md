@@ -26,10 +26,11 @@ port on which request will send. Default 443
 ## Example Usage
 ```yaml
 - name: Docker Pull Auto
-  uses: actions/docker-pull-auto@v1.0
+  uses: codebysandip/docker-pull-auto@v1.2
   with:
     docker-image: sandipj/react-ssr-doc
     docker-tag: prod-1.0
     domain: myawesomeapp.com
-    hook-secret: my-secret
+    hook-secret: ${{ secrets.HOOK_SECRET}}
 ```
+HOOK_SECRET of docker pull auto action and [docker pull auto](https://codebysandip.github.io/docker-pull-auto) must be same
