@@ -2839,9 +2839,18 @@ const obj = {
     dockerTag: core.getInput("docker-tag"),
     domain: core.getInput("domain"),
     hookSecret: core.getInput("hook-secret"),
-    overHttp: core.getInput("over-http"),
-    port: core.getInput("port")
+    overHttp: JSON.parse(core.getInput("over-http")),
+    port: JSON.parse(core.getInput("port"))
 };
+console.log("typeof overHttp", typeof core.getInput("over-http"));
+console.log("typeof port", typeof core.getInput("port"));
+
+try {
+    new URL(`http://${obj.domain}`);
+} catch {
+    console.error(`Invalid domain ${obj.domain}. Example value example.com or sub.example.com`);
+    process.exit(1);
+}
 // for local testing
 // const obj = {};
 // const args = process.argv.slice(2);
@@ -2901,8 +2910,6 @@ const options = {
         "x-hub-signature-256": header,
     },
 };
-
-console.log("request options!!", options);
 
 const req = adapter.request(options, function (res) {
     console.log("STATUS: " + res.statusCode);

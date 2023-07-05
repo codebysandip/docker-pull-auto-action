@@ -1,20 +1,29 @@
-// const core = require('@actions/core');
+const core = require('@actions/core');
 
-// const obj = {
-//     dockerImage: core.getInput("docker-image"),
-//     dockerTag: core.getInput("docker-tag"),
-//     domain: core.getInput("domain"),
-//     hookSecret: core.getInput("hook-secret"),
-//     overHttp: core.getInput("over-http"),
-//     port: core.getInput("port")
-// };
+const obj = {
+    dockerImage: core.getInput("docker-image"),
+    dockerTag: core.getInput("docker-tag"),
+    domain: core.getInput("domain"),
+    hookSecret: core.getInput("hook-secret"),
+    overHttp: JSON.parse(core.getInput("over-http")),
+    port: JSON.parse(core.getInput("port"))
+};
+console.log("typeof overHttp", typeof core.getInput("over-http"));
+console.log("typeof port", typeof core.getInput("port"));
+
+try {
+    new URL(`http://${obj.domain}`);
+} catch {
+    console.error(`Invalid domain ${obj.domain}. Example value example.com or sub.example.com`);
+    process.exit(1);
+}
 // for local testing
-const obj = {};
-const args = process.argv.slice(2);
-args.forEach((arg) => {
-    const splittedVal = arg.split("=");
-    obj[splittedVal[0]] = splittedVal[1] || true;
-});
+// const obj = {};
+// const args = process.argv.slice(2);
+// args.forEach((arg) => {
+//     const splittedVal = arg.split("=");
+//     obj[splittedVal[0]] = splittedVal[1] || true;
+// });
 
 if (!obj.dockerImage) {
     console.error("docker image not passed as parameter. Example dockerImage=sandipj/react-ssr-doc");
