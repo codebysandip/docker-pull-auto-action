@@ -38,7 +38,7 @@ HOOK_SECRET of docker pull auto action and [docker pull auto](https://codebysand
 ## Use http request
 ```yaml
 - name: Docker Pull Auto
-  uses: codebysandip/docker-pull-auto@v1.3
+  uses: codebysandip/docker-pull-auto-action@v1.4
   with:
     docker-image: sandipj/react-ssr-doc
     docker-tag: prod-1.0
@@ -50,7 +50,7 @@ HOOK_SECRET of docker pull auto action and [docker pull auto](https://codebysand
 ## Send Request to specific port over http
 ```yaml
 - name: Docker Pull Auto
-  uses: codebysandip/docker-pull-auto@v1.3
+  uses: codebysandip/docker-pull-auto-action@v1.4
   with:
     docker-image: sandipj/react-ssr-doc
     docker-tag: prod-1.0

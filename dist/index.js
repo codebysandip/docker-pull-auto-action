@@ -2842,8 +2842,6 @@ const obj = {
     overHttp: JSON.parse(core.getInput("over-http")),
     port: JSON.parse(core.getInput("port"))
 };
-console.log("typeof overHttp", typeof core.getInput("over-http"));
-console.log("typeof port", typeof core.getInput("port"));
 
 try {
     new URL(`http://${obj.domain}`);
@@ -2880,9 +2878,9 @@ if (!obj.hookSecret) {
 }
 
 if (obj.overHttp) {
-    console.log("request will send over http");
+    console.log(`request will send over http  on domain ${obj.domain}`);
 } else {
-    console.log("request will send over https");
+    console.log(`request will send over https on domain ${obj.domain}`);
 }
 
 const adapter = obj.overHttp ? __nccwpck_require__(685) : __nccwpck_require__(687);
@@ -2895,6 +2893,8 @@ const data = {
 const { createHmac } = __nccwpck_require__(113);
 
 const dataStr = JSON.stringify(data);
+
+console.log("Body of request ", dataStr);
 
 const signature = createHmac("sha256", obj.hookSecret).update(dataStr).digest("hex");
 const header = `sha256=${signature}`;
